@@ -1,0 +1,62 @@
+:host {
+  .st-content-date {
+    &__row {
+      display: flex;
+      justify-content: space-between;
+      height: 30px;
+      margin: 6px 0;
+      align-items: center;
+
+      &.week {
+        height: auto;
+        margin: 0 0 12px 0;
+        padding-bottom: 6px;
+        border-bottom: 1px solid #999999;
+        color: #999999;
+
+        .cell-content {
+          font-size: 12px;
+          font-weight: bold;
+        }
+      }
+    }
+
+    &__cell {
+      $cell-size: calc(100% / 7 - 1px);
+      flex-basis: $cell-size;
+      text-align: center;
+      cursor: pointer;
+      font-size: 14px;
+
+      .cell-content {
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        line-height: 30px;
+
+        transition: all .4s;
+      }
+
+      &.hovered {
+        @media (hover) {
+          &:hover {
+            .cell-content {
+              background-color: #dddddd;
+            }
+          }
+        }
+      }
+    }
+
+    &__cell.active {
+
+      .cell-content {
+        background-color: cornflowerblue;
+        color: white;
+        font-weight: bold;
+      }
+    }
+  }
+
+}

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import DateTimeFormatOptions = Intl.DateTimeFormatOptions;
 import * as moment from 'moment';
 import { Moment } from 'moment';
+import {VIEW_TYPE} from './view-type.enum';
 
 @Component({
   // tslint:disable-next-line
@@ -10,6 +11,9 @@ import { Moment } from 'moment';
   styleUrls: ['./st-date-time.component.scss'],
 })
 export class StDateTimeComponent implements OnInit {
+  public viewType: VIEW_TYPE;
+  public VIEW_TYPE = VIEW_TYPE;
+
   get formattedDate(): String {
     return this._selectedDateMoment.format('ll');
   }
@@ -22,27 +26,13 @@ export class StDateTimeComponent implements OnInit {
     this._selectedDateMoment = value;
   }
 
-  get weekDaysNames(): string[] {
-    return [
-      'M',
-      'T',
-      'W',
-      'Th',
-      'F',
-      'St',
-      'S',
-    ];
-  }
-
   private _selectedDateMoment: Moment;
-
-  dateMatrix: number[][] = [];
 
   constructor() { }
 
   ngOnInit() {
+    this.viewType = VIEW_TYPE.DATE;
     this.initSelectedDate();
-    this.initDatesMatrix();
   }
 
   private initSelectedDate() {
@@ -58,30 +48,7 @@ export class StDateTimeComponent implements OnInit {
     this.selectedDate.add(1, 'month');
   }
 
-  selectDate(day: number) {
-    this.selectedDate.date(day);
-  }
-
-  private initDatesMatrix() {
-    const startOfMonth = moment(this.selectedDate.toISOString()).startOf('month');
-    const dateOfMonth = moment(startOfMonth.toISOString());
-    const endOfMonth = moment(this.selectedDate.toISOString()).endOf('month');
-
-    let week: number[];
-
-    for (let w = 0; w < 6; w++) {
-
-      week = [];
-
-      for (let d = 0; d < 7; d++) {
-        if (w === 0 && d === 0) {
-          week.push(dateOfMonth.date());
-        } else {
-          week.push(dateOfMonth.add(1, 'day').date());
-        }
-      }
-
-      this.dateMatrix[w] = week;
-    }
+  toggleView() {
+    this.viewType = this.viewType === VIEW_TYPE.DATE ? VIEW_TYPE.TIME : VIEW_TYPE.DATE;
   }
 }

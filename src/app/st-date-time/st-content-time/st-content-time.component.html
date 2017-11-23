@@ -1,0 +1,21 @@
+<div class="st-content-time">
+  <div class="format-control-container" *ngIf="false">
+    <label>
+      <input type="radio">
+      AM
+    </label>
+    <label>
+      <input type="radio">
+      PM
+    </label>
+  </div>
+
+  <div class="time-stamp-container">
+    <div class="time-stamp"
+         *ngFor="let stamp of timeStamps"
+         (click)="selectTimeStamp(stamp)"
+         [ngClass]="{active: stamp === activeValue.hour()}">
+      {{ stamp }}:00
+    </div>
+  </div>
+</div>

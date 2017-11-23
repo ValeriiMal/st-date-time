@@ -5,7 +5,7 @@
   .st-container {
     width: 300px;
     padding: 12px;
-    box-shadow: 0 0 6px 0px #aaaaaa;
+    box-shadow: 0 0 6px 0 #aaaaaa;
   }
 
   .st-header {
@@ -28,16 +28,24 @@
     align-items: center;
   }
 
+  .st-content {
+    margin-top: 24px;
+
+    &__content {
+      display: block;
+      height: 260px;
+    }
+  }
+
   .st-content-toggle {
     justify-content: center;
     margin: 12px 0;
     padding-bottom: 12px;
     padding-top: 12px;
-    border-bottom: 1px solid #999999;
-    border-top: 1px solid #999999;
     font-size: 12px;
     font-weight: bold;
     color: #999999;
+    cursor: pointer;
 
     .st-content-time {
       display: flex;
@@ -57,77 +65,16 @@
     }
   }
 
-  .st-content-date {
-    &__row {
-      display: flex;
-      justify-content: space-between;
-      height: 30px;
-      align-items: center;
-
-      &.week {
-        height: auto;
-        margin: 24px 0 12px 0;
-        padding-bottom: 6px;
-        border-bottom: 1px solid #999999;
-        color: #999999;
-
-        .cell-content {
-          font-size: 12px;
-          font-weight: bold;
-        }
-      }
-
-      &:not(.week) {
-        margin: 6px 0;
-      }
-    }
-
-    &__cell {
-      $cell-size: calc(100% / 7 - 1px);
-      flex-basis: $cell-size;
-      text-align: center;
-      cursor: pointer;
-      font-size: 14px;
-
-      .cell-content {
-        display: inline-block;
-        width: 30px;
-        height: 30px;
-        border-radius: 50%;
-        line-height: 30px;
-
-        transition: all .4s;
-      }
-
-      @media (hover) {
-        &:hover {
-          .cell-content {
-            background-color: #cccccc;
-          }
-        }
-      }
-    }
-
-    &__cell.active {
-
-      .cell-content {
-        background-color: cornflowerblue;
-        color: white;
-        font-weight: bold;
-      }
-    }
-  }
-
   .st-footer {
     text-align: center;
 
     &__action-button {
       width: 100%;
-      height: 30px;
+      height: 60px;
       border-radius: 6px;
       background-color: turquoise;
       border: 0;
-      box-shadow: 0 0 6px 0 #aaaaaa;
+      box-shadow: 0 0 2px 0 #aaaaaa;
       font-size: 16px;
       color: white;
       font-weight: bold;
