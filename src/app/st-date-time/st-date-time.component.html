@@ -1,0 +1,48 @@
+<div class="st-container">
+
+  <div class="st-header">
+    <div class="st-header__date-label">
+      {{ formattedDate }}
+    </div>
+    <div class="st-header__toggle">
+      <div class="angle-left" (click)="prev()"></div>
+      <div class="angle-right" (click)="next()"></div>
+    </div>
+  </div>
+
+  <div class="st-content">
+
+    <div class="st-content-date">
+
+      <div class="st-content-date__row week">
+        <div class="st-content-date__cell"
+             *ngFor="let day of weekDaysNames">
+          <div class="cell-content">{{ day }}</div>
+        </div>
+      </div>
+
+      <div class="st-content-date__row" *ngFor="let week of dateMatrix">
+        <div class="st-content-date__cell"
+             *ngFor="let day of week"
+             (click)="selectDate(day)"
+             [ngClass]="{active: day === selectedDate.date()}">
+          <div class="cell-content">{{ day }}</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="st-content-toggle">
+      <div class="st-content-time">
+        <div class="st-content-time__time-icon"><span class="icon-clock"></span></div>
+        <div class="st-content-time__time-stamp">3 PM</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="st-footer">
+    <button class="st-footer__action-button">Apply</button>
+  </div>
+
+</div>
