@@ -1,21 +1,18 @@
 <div class="st-container">
 
-  <div class="st-header">
-    <div class="st-header__date-label">
-      {{ formattedDate }}
-    </div>
-    <div class="st-header__toggle">
-      <div class="angle-left" (click)="prev()"></div>
-      <div class="angle-right" (click)="next()"></div>
-    </div>
-  </div>
+  <app-st-date-time-header [date]="baseDate" (next)="next()" (prev)="prev()"></app-st-date-time-header>
 
   <div class="st-content">
 
     <!--TODO make it display: inline-block with 300px width for desktop view-->
-    <st-content-date *ngIf="viewType === VIEW_TYPE.DATE" class="st-content__content"></st-content-date>
+    <st-content-date *ngIf="viewType === VIEW_TYPE.DATE || viewType === VIEW_TYPE.ALL"
+                     [baseDate]="baseDate.toDate()"
+                     class="st-content__content">
+    </st-content-date>
 
-    <st-content-time *ngIf="viewType === VIEW_TYPE.TIME" class="st-content__content"></st-content-time>
+    <st-content-time *ngIf="viewType === VIEW_TYPE.TIME || viewType === VIEW_TYPE.ALL"
+                     class="st-content__content">
+    </st-content-time>
 
     <div class="st-content-toggle" (click)="toggleView()">
       <div class="st-content-time">
@@ -27,7 +24,7 @@
   </div>
 
   <div class="st-footer">
-    <button class="st-footer__action-button">Apply</button>
+    <button class="st-footer__action-button" (click)="onApply()">Apply</button>
   </div>
 
 </div>

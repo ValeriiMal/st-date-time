@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import * as moment from 'moment';
 import {Moment} from 'moment';
 
@@ -9,7 +9,9 @@ import {Moment} from 'moment';
   styleUrls: ['./st-content-date.component.scss']
 })
 export class StContentDateComponent implements OnInit {
-  public dateMatrix: any = [];
+  public weeks: Array<Array<Moment>> = [];
+
+  @Input() baseDate: Date;
 
   get weekDaysNames(): string[] {
     return [
@@ -32,26 +34,25 @@ export class StContentDateComponent implements OnInit {
 
 
   private initDatesMatrix() {
-    const selectedDate: Moment = moment(new Date());
-    const startOfMonth = moment(selectedDate.toISOString()).startOf('month');
-    const dateOfMonth = moment(startOfMonth.toISOString());
-    const endOfMonth = moment(selectedDate.toISOString()).endOf('month');
+    const baseDate = moment(this.baseDate);
+    const startOfMonth = moment(baseDate.toISOString()).startOf('month');
+    const startOfWeek = moment(startOfMonth.toISOString()).startOf('week');
+    const dateOfMonth = moment(startOfWeek.toISOString());
 
-    let week: number[];
-
+    let week: Moment[];
     for (let w = 0; w < 6; w++) {
 
       week = [];
 
       for (let d = 0; d < 7; d++) {
-        if (w === 0 && d === 0) {
-          week.push(dateOfMonth.date());
-        } else {
-          week.push(dateOfMonth.add(1, 'day').date());
-        }
+
+        week.push(dateOfMonth.add(1, 'day'));
+
       }
 
-      this.dateMatrix[w] = week;
+      this.weeks[w] = week;
     }
+
+    console.log(this.weeks);
   }
 }

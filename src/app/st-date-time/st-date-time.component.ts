@@ -1,5 +1,4 @@
-import {Component, OnInit} from '@angular/core';
-import DateTimeFormatOptions = Intl.DateTimeFormatOptions;
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import * as moment from 'moment';
 import { Moment } from 'moment';
 import {VIEW_TYPE} from './view-type.enum';
@@ -11,22 +10,10 @@ import {VIEW_TYPE} from './view-type.enum';
   styleUrls: ['./st-date-time.component.scss'],
 })
 export class StDateTimeComponent implements OnInit {
+  @Output() apply = new EventEmitter();
   public viewType: VIEW_TYPE;
   public VIEW_TYPE = VIEW_TYPE;
-
-  get formattedDate(): String {
-    return this._selectedDateMoment.format('ll');
-  }
-
-  get selectedDate(): Moment {
-    return this._selectedDateMoment;
-  }
-
-  set selectedDate(value: Moment) {
-    this._selectedDateMoment = value;
-  }
-
-  private _selectedDateMoment: Moment;
+  public baseDate: Moment;
 
   constructor() { }
 
@@ -36,19 +23,24 @@ export class StDateTimeComponent implements OnInit {
   }
 
   private initSelectedDate() {
-    const date = new Date();
-    this.selectedDate = moment(date);
+    this.baseDate = moment(new Date()).startOf('month');
   }
 
   prev() {
-    this.selectedDate.add(-1, 'month');
+    this.baseDate = moment(this.baseDate).add(-1, 'month');
   }
 
   next() {
-    this.selectedDate.add(1, 'month');
+    this.baseDate = moment(this.baseDate).add(1, 'month');
   }
 
   toggleView() {
     this.viewType = this.viewType === VIEW_TYPE.DATE ? VIEW_TYPE.TIME : VIEW_TYPE.DATE;
+  }
+
+  onApply() {
+    this.apply.emit({
+      date: this.baseDate.toDate(),
+    });
   }
 }

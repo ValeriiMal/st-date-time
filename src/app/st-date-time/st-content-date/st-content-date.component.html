@@ -2,19 +2,19 @@
 
   <div class="st-content-date__row week">
     <div class="st-content-date__cell"
-         *ngFor="let day of weekDaysNames">
-      <div class="cell-content">{{ day }}</div>
+         *ngFor="let dayName of weekDaysNames">
+      <div class="cell-content">{{ dayName }}</div>
     </div>
   </div>
 
   <div class="st-content-date__row"
-       *ngFor="let week of dateMatrix">
+       *ngFor="let week of weeks">
 
     <div class="st-content-date__cell hovered"
          *ngFor="let day of week"
          (click)="selectDate(day)"
          [ngClass]="{active: false}">
-      <div class="cell-content">{{ day }}</div>
+      <div class="cell-content">{{ day.date() }}</div>
     </div>
 
   </div>

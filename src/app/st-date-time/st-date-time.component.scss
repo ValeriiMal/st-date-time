@@ -8,20 +8,6 @@
     box-shadow: 0 0 6px 0 #aaaaaa;
   }
 
-  .st-header {
-    margin-top: 24px;
-    margin-bottom: 12px;
-
-    &__toggle {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      width: 36px;
-      margin-right: 16px;
-    }
-  }
-
-  .st-header,
   .st-content-toggle {
     display: flex;
     justify-content: space-between;
@@ -86,20 +72,4 @@
     }
   }
 
-  .angle-left,
-  .angle-right {
-    display: inline-block;
-    width: 12px;
-    height: 12px;
-    border: 2px solid #aaaaaa;
-    border-bottom: 0;
-    border-left: 0;
-    cursor: pointer;
-  }
-  .angle-left {
-    transform: rotate(-135deg);
-  }
-  .angle-right {
-    transform: rotate(45deg);
-  }
 }
