@@ -30,8 +30,8 @@ export class StContentTimeComponent {
     if (this.date.isBefore(today, 'day')) {
       return;
     }
-    const isToday = this.date.isSame(moment(new Date()), 'day');
-    const value = isToday ? moment(new Date()) : moment(this.date).hour(0);
+    const isToday = this.date.isSame(today, 'day');
+    const value = isToday ? today : moment(this.date).hour(0);
 
     this.timeStamps = [];
     this.timeStamps.push(value.hour());

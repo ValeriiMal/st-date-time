@@ -12,12 +12,6 @@
     }
   }
 
-  .st-content-toggle {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
   .st-content {
     margin-top: 24px;
 
@@ -34,6 +28,8 @@
   }
 
   .st-content-toggle {
+    display: flex;
+    align-items: center;
     justify-content: center;
     margin: 12px 0;
     padding-bottom: 12px;

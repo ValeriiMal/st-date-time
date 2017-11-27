@@ -32,7 +32,7 @@ export class StDateTimeComponent implements OnInit, ControlValueAccessor {
       date = new Date();
     }
     date = moment(date);
-    const hour = date.hour() < 15 ? 15 : date.hour() + 1;
+    const hour = date.hour() < 15 ? 15 : date.hour();
     this.selectedDate = moment(date).hour(hour).minute(0);
   }
 
