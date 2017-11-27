@@ -6,27 +6,60 @@
         "paths": [
           "M658.744 749.256l-210.744-210.746v-282.51h128v229.49l173.256 173.254zM512 0c-282.77 0-512 229.23-512 512s229.23 512 512 512 512-229.23 512-512-229.23-512-512-512zM512 896c-212.078 0-384-171.922-384-384s171.922-384 384-384c212.078 0 384 171.922 384 384s-171.922 384-384 384z"
         ],
+        "attrs": [
+          {}
+        ],
+        "isMulticolor": false,
+        "isMulticolor2": false,
         "tags": [
-          "clock",
-          "time",
-          "schedule"
+          "clock"
         ],
         "defaultCode": 59726,
+        "grid": 0
+      },
+      "attrs": [
+        {}
+      ],
+      "properties": {
+        "order": 4,
+        "id": 0,
+        "name": "clock",
+        "ligatures": "",
+        "prevSize": 32,
+        "code": 59726
+      },
+      "setIdx": 0,
+      "setId": 2,
+      "iconIdx": 0
+    },
+    {
+      "icon": {
+        "paths": [
+          "M320 384h128v128h-128zM512 384h128v128h-128zM704 384h128v128h-128zM128 768h128v128h-128zM320 768h128v128h-128zM512 768h128v128h-128zM320 576h128v128h-128zM512 576h128v128h-128zM704 576h128v128h-128zM128 576h128v128h-128zM832 0v64h-128v-64h-448v64h-128v-64h-128v1024h960v-1024h-128zM896 960h-832v-704h832v704z"
+        ],
+        "tags": [
+          "calendar",
+          "date",
+          "schedule",
+          "time",
+          "day"
+        ],
+        "defaultCode": 59731,
         "grid": 16,
         "attrs": []
       },
       "attrs": [],
       "properties": {
-        "ligatures": "clock, time2",
-        "name": "clock",
-        "order": 2,
-        "id": 79,
+        "ligatures": "calendar, date",
+        "name": "calendar",
+        "order": 3,
+        "id": 84,
         "prevSize": 32,
-        "code": 59726
+        "code": 59731
       },
-      "setIdx": 0,
+      "setIdx": 1,
       "setId": 1,
-      "iconIdx": 78
+      "iconIdx": 83
     }
   ],
   "height": 1024,
@@ -54,8 +87,8 @@
       "showSelector": true,
       "selector": "",
       "classSelector": ".icon",
-      "showMetadata": false,
-      "showMetrics": false,
+      "showMetadata": true,
+      "showMetrics": true,
       "showVersion": false
     },
     "imagePref": {

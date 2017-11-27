@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Moment} from 'moment';
 import * as moment from 'moment';
+import Diff = moment.unitOfTime.Diff;
 
 @Component({
   // tslint:disable-next-line
@@ -23,10 +24,17 @@ export class StContentTimeComponent {
   }
 
   public timeStamps: any[];
+  public selectedDateWithTime: Moment;
 
   private setTimeStamps() {
+    const today: Moment = moment(new Date());
+    if (this.date.isBefore(today, 'day')) {
+      return;
+    }
+    const isToday = this.date.isSame(moment(new Date()), 'day');
+    const value = isToday ? moment(new Date()) : moment(this.date).hour(0);
+
     this.timeStamps = [];
-    const value = moment(this.date);
     this.timeStamps.push(value.hour());
     let i = 0;
     value.add(1, 'hour');
@@ -38,8 +46,17 @@ export class StContentTimeComponent {
   }
 
   selectTimeStamp(hour: number) {
+    this.selectedDateWithTime = moment(this.date).hour(hour);
     this.selectTime.emit({
-      date: moment(this.date).hour(hour),
+      date: this.selectedDateWithTime,
     });
+  }
+
+  getTimeLabel(hour: number): string {
+    const date: Moment = moment(this.date);
+    if (!date.isValid() || !date.hour(hour).isValid()) {
+      return;
+    }
+    return date.hour(hour).format('HH:mm');
   }
 }

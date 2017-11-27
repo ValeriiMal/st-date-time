@@ -19,6 +19,7 @@ export class StDateTimeComponent implements OnInit {
   ngOnInit() {
     this.viewType = VIEW_TYPE.DATE;
     this.selectedDate = moment(new Date());
+    this.selectedDate.minute(0);
     this.initSelectedDate();
   }
 

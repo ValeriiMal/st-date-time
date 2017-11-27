@@ -18,10 +18,13 @@
                      class="st-content__content">
     </st-content-time>
 
-    <div class="st-content-toggle" (click)="toggleView()">
+    <div class="st-content-toggle"
+         (click)="toggleView()">
       <div class="st-content-time">
-        <div class="st-content-time__time-icon"><span class="icon-clock"></span></div>
-        <div class="st-content-time__time-stamp">3 PM</div>
+        <div class="st-content-time__time-icon" *ngIf="viewType === VIEW_TYPE.DATE"><span class="icon-clock"></span></div>
+        <div class="st-content-time__time-stamp" *ngIf="viewType === VIEW_TYPE.DATE">{{ selectedDate.format('HH:mm')}}</div>
+        <div class="st-content-time__time-icon" *ngIf="viewType === VIEW_TYPE.TIME"><span class="icon-calendar"></span></div>
+        <div class="st-content-time__time-stamp" *ngIf="viewType === VIEW_TYPE.TIME">{{ selectedDate.format('ll') }}</div>
       </div>
     </div>
 

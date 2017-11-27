@@ -15,7 +15,7 @@
          *ngFor="let stamp of timeStamps"
          (click)="selectTimeStamp(stamp)"
          [ngClass]="{active: stamp === date.hour()}">
-      {{ stamp }}:00
+      {{ getTimeLabel(stamp) }}
     </div>
   </div>
 </div>
