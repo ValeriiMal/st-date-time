@@ -1,3 +1,5 @@
 <div class="container">
-  <st-date-time (apply)="onDateSelect($event)"></st-date-time>
+  <form [formGroup]="formGroup">
+    <st-date-time formControlName="date"></st-date-time>
+  </form>
 </div>

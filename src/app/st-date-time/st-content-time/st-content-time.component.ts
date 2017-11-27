@@ -1,7 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Moment} from 'moment';
 import * as moment from 'moment';
-import Diff = moment.unitOfTime.Diff;
 
 @Component({
   // tslint:disable-next-line
