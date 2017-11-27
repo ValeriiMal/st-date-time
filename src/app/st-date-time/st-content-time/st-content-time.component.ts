@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Moment} from 'moment';
 import * as moment from 'moment';
 
@@ -8,20 +8,25 @@ import * as moment from 'moment';
   templateUrl: './st-content-time.component.html',
   styleUrls: ['./st-content-time.component.scss']
 })
-export class StContentTimeComponent implements OnInit {
+export class StContentTimeComponent {
 
-  private date: Moment = moment(new Date()).add(3, 'hour');
+  private _date: Moment;
 
-  public activeValue: Moment;
+  @Input() set date(value: Moment) {
+    this._date = value;
+    this.setTimeStamps();
+  };
+  @Output() selectTime = new EventEmitter();
+
+  get date(): Moment {
+    return this._date;
+  }
 
   public timeStamps: any[];
 
-  constructor() { }
-
-  ngOnInit() {
-    this.activeValue = moment(this.date.toISOString());
+  private setTimeStamps() {
     this.timeStamps = [];
-    const value = moment(this.date.toISOString());
+    const value = moment(this.date);
     this.timeStamps.push(value.hour());
     let i = 0;
     value.add(1, 'hour');
@@ -33,7 +38,8 @@ export class StContentTimeComponent implements OnInit {
   }
 
   selectTimeStamp(hour: number) {
-    this.activeValue.hour(hour);
+    this.selectTime.emit({
+      date: moment(this.date).hour(hour),
+    });
   }
-
 }

@@ -1,16 +1,20 @@
 <div class="st-container">
 
-  <app-st-date-time-header [date]="baseDate" (next)="next()" (prev)="prev()"></app-st-date-time-header>
+  <app-st-date-time-header [date]="selectedDate" (next)="next()" (prev)="prev()"></app-st-date-time-header>
 
   <div class="st-content">
 
     <!--TODO make it display: inline-block with 300px width for desktop view-->
     <st-content-date *ngIf="viewType === VIEW_TYPE.DATE || viewType === VIEW_TYPE.ALL"
                      [baseDate]="baseDate.toDate()"
+                     [selectedDate]="selectedDate"
+                     (select)="onDateSelect($event)"
                      class="st-content__content">
     </st-content-date>
 
     <st-content-time *ngIf="viewType === VIEW_TYPE.TIME || viewType === VIEW_TYPE.ALL"
+                     [date]="selectedDate"
+                     (selectTime)="onTimeSelect($event)"
                      class="st-content__content">
     </st-content-time>
 

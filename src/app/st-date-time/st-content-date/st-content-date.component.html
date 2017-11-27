@@ -7,13 +7,17 @@
     </div>
   </div>
 
+  <div class="st-content-date__month">
+    {{ monthName }}
+  </div>
+
   <div class="st-content-date__row"
        *ngFor="let week of weeks">
 
     <div class="st-content-date__cell hovered"
          *ngFor="let day of week"
          (click)="selectDate(day)"
-         [ngClass]="{active: false}">
+         [ngClass]="{active: isDateActive(day), disabled: isDateDisabled(day) }">
       <div class="cell-content">{{ day.date() }}</div>
     </div>
 

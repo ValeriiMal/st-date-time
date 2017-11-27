@@ -21,6 +21,10 @@
       }
     }
 
+    &__month {
+      margin-bottom: 12px;
+    }
+
     &__cell {
       $cell-size: calc(100% / 7 - 1px);
       flex-basis: $cell-size;
@@ -40,7 +44,7 @@
 
       &.hovered {
         @media (hover) {
-          &:hover {
+          &:hover:not(.active):not(.disabled) {
             .cell-content {
               background-color: #dddddd;
             }
@@ -49,12 +53,20 @@
       }
     }
 
-    &__cell.active {
-
-      .cell-content {
-        background-color: cornflowerblue;
-        color: white;
-        font-weight: bold;
+    &__cell {
+      &.active {
+        .cell-content {
+          background-color: cornflowerblue;
+          color: white;
+          font-weight: bold;
+        }
+      }
+      &.disabled {
+        .cell-content {
+          background-color: #ffffff;
+          color: #aaaaaa;
+          font-weight: normal;
+        }
       }
     }
   }

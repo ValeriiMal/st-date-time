@@ -14,11 +14,11 @@ export class StDateTimeComponent implements OnInit {
   public viewType: VIEW_TYPE;
   public VIEW_TYPE = VIEW_TYPE;
   public baseDate: Moment;
-
-  constructor() { }
+  public selectedDate: Moment;
 
   ngOnInit() {
     this.viewType = VIEW_TYPE.DATE;
+    this.selectedDate = moment(new Date());
     this.initSelectedDate();
   }
 
@@ -40,7 +40,15 @@ export class StDateTimeComponent implements OnInit {
 
   onApply() {
     this.apply.emit({
-      date: this.baseDate.toDate(),
+      date: this.selectedDate.toDate(),
     });
+  }
+
+  onDateSelect($event: { date: Moment }) {
+    this.selectedDate = moment($event.date);
+  }
+
+  onTimeSelect($event: { date: Moment }) {
+    this.selectedDate = moment($event.date);
   }
 }
