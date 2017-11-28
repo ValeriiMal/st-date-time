@@ -1,4 +1,4 @@
-import {Component, EventEmitter, forwardRef, OnInit, Output} from '@angular/core';
+import {Component, forwardRef, Input, OnInit} from '@angular/core';
 import * as moment from 'moment';
 import { Moment } from 'moment';
 import {VIEW_TYPE} from './view-type.enum';
@@ -18,13 +18,12 @@ import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
   ],
 })
 export class StDateTimeComponent implements OnInit, ControlValueAccessor {
-
-  @Output() apply: EventEmitter<{ date: Date }> = new EventEmitter<{ date: Date }>();
+  @Input() btnText = 'Apply';
   public viewType: VIEW_TYPE;
   public VIEW_TYPE = VIEW_TYPE;
   public baseDate: Moment;
   public selectedDate: Moment;
-  propagateChange;
+  private propagateChange: (value: any) => void;
 
   writeValue(obj: any): void {
     let date: any = obj;
@@ -32,8 +31,7 @@ export class StDateTimeComponent implements OnInit, ControlValueAccessor {
       date = new Date();
     }
     date = moment(date);
-    const hour = date.hour() < 15 ? 15 : date.hour();
-    this.selectedDate = moment(date).hour(hour).minute(0);
+    this.selectedDate = this.setDefaultTime(date);
   }
 
   registerOnChange(fn: any): void {
@@ -71,17 +69,23 @@ export class StDateTimeComponent implements OnInit, ControlValueAccessor {
 
   onApply() {
     this.propagateChange(this.selectedDate.toDate());
-    this.apply.emit({
-      date: this.selectedDate.toDate(),
-    });
   }
 
   onDateSelect($event: { date: Moment }) {
-    this.selectedDate = moment($event.date);
+    if (!$event || !$event.date) {
+      return;
+    }
+    const date: Moment = $event.date;
+    this.selectedDate = this.setDefaultTime(date);
   }
 
   onTimeSelect($event: { date: Moment }) {
     this.selectedDate = moment($event.date);
     this.viewType = VIEW_TYPE.DATE;
+  }
+
+  private setDefaultTime(date: Moment): Moment {
+    const hour = date.hour() < 15 ? 15 : date.hour();
+    return moment(date).hour(hour).minute(0).second(0);
   }
 }

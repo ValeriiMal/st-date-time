@@ -3,21 +3,22 @@
   <app-st-date-time-header [date]="selectedDate"
                            (next)="next()"
                            (prev)="prev()">
+                           <!--*ngIf="viewType === VIEW_TYPE.DATE || viewType === VIEW_TYPE.ALL"-->
   </app-st-date-time-header>
 
   <div class="st-content">
 
-    <st-content-date *ngIf="viewType === VIEW_TYPE.DATE || viewType === VIEW_TYPE.ALL"
+    <st-content-date class="st-content__content"
+                     *ngIf="viewType === VIEW_TYPE.DATE || viewType === VIEW_TYPE.ALL"
                      [baseDate]="baseDate.toDate()"
                      [selectedDate]="selectedDate"
-                     (select)="onDateSelect($event)"
-                     class="st-content__content">
+                     (select)="onDateSelect($event)">
     </st-content-date>
 
-    <st-content-time *ngIf="viewType === VIEW_TYPE.TIME || viewType === VIEW_TYPE.ALL"
+    <st-content-time class="st-content__content"
+                     *ngIf="viewType === VIEW_TYPE.TIME || viewType === VIEW_TYPE.ALL"
                      [date]="selectedDate"
-                     (selectTime)="onTimeSelect($event)"
-                     class="st-content__content">
+                     (selectTime)="onTimeSelect($event)">
     </st-content-time>
 
   </div>
@@ -33,7 +34,10 @@
   </div>
 
   <div class="st-footer">
-    <button class="st-footer__action-button" (click)="onApply()">Apply</button>
+    <button class="st-footer__action-button"
+            (click)="onApply()">
+      {{ btnText }}
+    </button>
   </div>
 
 </div>
